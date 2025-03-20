@@ -5,7 +5,7 @@ from telegram.constants import ParseMode
 # Your existing code here
 #from telegram.ext import Updater, CommandHandler, Defaults
 ##from telegram import ParseMode
-#from os import environ
+from os import environ
 #from dotenv import load_dotenv
 import logging
 from commands import start, help, play, kill, guess, about
