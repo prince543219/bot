@@ -1,7 +1,7 @@
 from os import environ
 import logging
 from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, Defaults, Updater
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, Defaults
 from telegram.constants import ParseMode
 from commands import start, help, play, kill, guess, about
 
@@ -19,28 +19,21 @@ config = Defaults(
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
 
 def main():
-    updater = Updater(
-        token=TELEGRAM_BOT_TOKEN,
-        use_context=True,
-        defaults=config,
-    )
+    app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).defaults(config).build()
 
-    dispatcher = updater.dispatcher
+    app.add_handler(CommandHandler("help", help))
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("play", play))
+    app.add_handler(CommandHandler("kill", kill))
+    app.add_handler(CommandHandler("guess", guess))
+    app.add_handler(CommandHandler("about", about))
 
-    dispatcher.add_handler(CommandHandler("help", help))
-    dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(CommandHandler("play", play))
-    dispatcher.add_handler(CommandHandler("kill", kill))
-    dispatcher.add_handler(CommandHandler("guess", guess))
-    dispatcher.add_handler(CommandHandler("about", about))
-
-    updater.start_webhook(
+    app.run_webhook(
         listen="0.0.0.0",
         port=PORT,
         url_path=TELEGRAM_BOT_TOKEN,
         webhook_url="https://pyal.herokuapp.com/" + TELEGRAM_BOT_TOKEN,
     )
-    updater.idle()
 
 if __name__ == "__main__":
     main()
