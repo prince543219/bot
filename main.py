@@ -1,29 +1,22 @@
-from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, Defaults
-from telegram.constants import ParseMode 
-
-# Your existing code here
-#from telegram.ext import Updater, CommandHandler, Defaults
-##from telegram import ParseMode
 from os import environ
-#from dotenv import load_dotenv
 import logging
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, Defaults, Updater
+from telegram.constants import ParseMode
 from commands import start, help, play, kill, guess, about
 
+# Load environment variables if needed
+# from dotenv import load_dotenv
+# load_dotenv()
 
-#load_dotenv()
-#TELEGRAM_BOT_TOKEN = environ["TELEGRAM_BOT_TOKEN"]
-TELEGRAM_BOT_TOKEN  = "7602939669:AAFTTrzXNVNbzVqECDFrZQXYakgw9W6_yhA"
+TELEGRAM_BOT_TOKEN = environ.get("TELEGRAM_BOT_TOKEN", "7602939669:AAFTTrzXNVNbzVqECDFrZQXYakgw9W6_yhA")
 PORT = environ.get("PORT", 8443)
 
 config = Defaults(
-    parse_mode=ParseMode.MARKDOWN_V2,
-    disable_web_page_preview=True,
-    allow_sending_without_reply=True,
+    parse_mode=ParseMode.MARKDOWN_V2
 )
 
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
-
 
 def main():
     updater = Updater(
@@ -48,7 +41,6 @@ def main():
         webhook_url="https://pyal.herokuapp.com/" + TELEGRAM_BOT_TOKEN,
     )
     updater.idle()
-
 
 if __name__ == "__main__":
     main()
