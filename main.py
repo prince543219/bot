@@ -1,5 +1,5 @@
 from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, Defaults
 from telegram.constants import ParseMode 
 
 # Your existing code here
