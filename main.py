@@ -6,8 +6,9 @@ import logging
 from commands import start, help, play, kill, guess, about
 
 
-load_dotenv()
-TELEGRAM_BOT_TOKEN = environ["TELEGRAM_BOT_TOKEN"]
+#load_dotenv()
+#TELEGRAM_BOT_TOKEN = environ["TELEGRAM_BOT_TOKEN"]
+TELEGRAM_BOT_TOKEN  = "7602939669:AAFTTrzXNVNbzVqECDFrZQXYakgw9W6_yhA"
 PORT = environ.get("PORT", 8443)
 
 config = Defaults(
