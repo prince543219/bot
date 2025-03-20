@@ -1,7 +1,12 @@
-from telegram.ext import Updater, CommandHandler, Defaults
-from telegram import ParseMode
-from os import environ
-from dotenv import load_dotenv
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+from telegram.constants import ParseMode 
+
+# Your existing code here
+#from telegram.ext import Updater, CommandHandler, Defaults
+##from telegram import ParseMode
+#from os import environ
+#from dotenv import load_dotenv
 import logging
 from commands import start, help, play, kill, guess, about
 
